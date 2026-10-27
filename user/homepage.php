@@ -25,9 +25,7 @@ require('server/conn.php');
                 <h2>MCR BOOKING</h2>
                 <p>เอ็มซีอาร์ บุ๊กกิ้ง</p>
             </div>
-            <a href="server/logout.php" class="btn-logout">
-                <p style="margin-top:7px">Logout</p>
-            </a>
+            <a href="server/logout.php" class="btn-logout">Logout</a>
             <!-- <div class="head-booking">
                 <img src="../static/calendar.png" alt="" width="25px" height="25px">
                 <a href>การจองของฉัน</a href>
@@ -36,7 +34,7 @@ require('server/conn.php');
         <?php
     if (isset($_SESSION['msg_err'])) {
 echo '
-<h3 style="    background: #ffe6e6;color: #b90000;padding: .5rem; border-radius: .5rem;border: solid 1px;display:flex; align-items:center;">
+<h3 class="alert-banner error">
                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#b90000">
                     <path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z"/>
                 </svg> 
@@ -46,7 +44,7 @@ echo '
                 unset($_SESSION['msg_err']);
     }else if(isset($_SESSION['msg_success'])){
         echo '
-        <h3 style="    background: #e9ffe6;color: #0ab900;padding: .5rem; border-radius: .5rem;border: solid 1px;display:flex; align-items:center;">
+        <h3 class="alert-banner success">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0ab900"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q65 0 123 19t107 53l-58 59q-38-24-81-37.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-18-2-36t-6-35l65-65q11 32 17 66t6 70q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-56-216L254-466l56-56 114 114 400-401 56 56-456 457Z"/></svg>
                 
                 '.$_SESSION["msg_success"].'
@@ -59,12 +57,10 @@ unset($_SESSION['msg_success']);
     
     ?>
     
-        <div class="">
-            รอภูมิทำ
+        <div class="homepage-main">
+        <div class="homepage-section-head">
+            <h2>BOOKING</h2>
         </div>
-        
-        <h2>BOOKING</h2>
-  
         <div class="homepage-booking">
         <?php
 
@@ -76,10 +72,10 @@ foreach($rows as $row) {
 ?>
             <div class="homepage-room">
             <img src=<?php echo'static/room/'.$row['room_type'].'/'.$row['room_id'].'.webp'; ?>  alt="" style=" max-width:100%; height: 22rem; object-fit: cover;">
-               <div style="padding:5px; display:flex; flex-direction:column; justify-content:space-between; height:100%">
-                <div>
-                    <a href=<?php echo 'user/room_detail.php?id='.$row['room_id']; ?> style="font-size:14pt;"><?php echo $row['room_name']; ?></a>
-                <p style="display:flex; align-items:center; gap:0.25rem;">
+                <div class="homepage-room-content">
+                    <div>
+                        <a href=<?php echo 'user/room_detail.php?id='.$row['room_id']; ?> class="homepage-room-title"><?php echo $row['room_name']; ?></a>
+                        <p class="homepage-room-meta">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2854C5"><path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/></svg>
                             <?php echo $row['room_seats']; ?>
                             
@@ -88,27 +84,23 @@ foreach($rows as $row) {
                                 <?php echo $row['room_OpeningTime']; ?>
                             </span>
                         </p>
-                <!-- <p style="white-space: nowrap; width: 13rem; overflow: hidden; text-overflow: ellipsis; "><?php echo $row['room_detail']; ?></p> -->
-                </div>
+                    </div>
                  
-                <div style="width:100%; display:flex; justify-content:end;">
-                    <?php
-                        if($row['status'] == 1){
-                            echo "<a href='user/booking.php?id=".$row['room_id']."'><img src='static/plus.png' alt='plus' class='plus'></a>";
-                        }else{
-                            echo "<p>ปิดให้บริการ</p>";
-                        }
-                    ?>
-                    
+                    <div style="width:100%; display:flex; justify-content:end;">
+                        <?php
+                            if($row['status'] == 1){
+                                echo "<a href='user/booking.php?id=".$row['room_id']."'><img src='static/plus.png' alt='plus' class='plus'></a>";
+                            }else{
+                                echo "<p class='service-closed'>ปิดให้บริการ</p>";
+                            }
+                        ?>
+                    </div>
                 </div>
-               
-               </div>
-           
             </div>
             
       <?php } ?> 
         </div>
-        
+        </div>
     </div>
 </body>
 </html>

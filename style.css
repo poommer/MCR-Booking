@@ -732,3 +732,349 @@ a.btn-back:hover{
 .button button:hover {
     background-color: #7a1fd0;
 }
+
+/* ===== UX/UI refresh ===== */
+:root{
+    --primary: #6d28d9;
+    --primary-dark: #4c1d95;
+    --primary-soft: #ede9fe;
+    --surface: #ffffff;
+    --surface-soft: #f8f7ff;
+    --text-main: #1f2937;
+    --text-sub: #6b7280;
+    --danger-soft: #ffe9e9;
+    --danger-text: #b91c1c;
+    --success-soft: #e9ffef;
+    --success-text: #15803d;
+}
+
+body{
+    background: radial-gradient(circle at top left, #f5f3ff, #ede9fe 45%, #ddd6fe);
+    color: var(--text-main);
+}
+
+.container{
+    background: var(--surface);
+    border-radius: 1rem;
+    box-shadow: 0 20px 45px #5b21b61f;
+}
+
+input, select, textarea{
+    border-radius: .75rem;
+    padding: .65rem .75rem;
+    border: 1px solid #ddd6fe;
+    background: #fff;
+}
+
+input:focus, select:focus, textarea:focus{
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px #8b5cf426;
+}
+
+.head-logo{
+    width: 100%;
+    padding: .75rem 1rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+    box-shadow: none;
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    gap: .5rem;
+}
+
+.head-logo > img {
+    max-width: 3rem;
+}
+
+.body-login{
+    height: auto;
+    min-height: 16rem;
+    padding: 1.5rem 1rem .5rem;
+}
+
+.body-login::before,
+.body-login::after{
+    display: none;
+}
+
+.form-zone{
+    height: auto;
+    border-radius: 2rem 2rem 0 0;
+    background: linear-gradient(180deg, #6d28d9, #5b21b6);
+    box-shadow: none;
+    padding: 1.5rem;
+}
+
+.group-inp{
+    height: auto;
+    gap: .35rem;
+}
+
+.group-inp > label {
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+.group-inp > input {
+    width: 100%;
+    font-size: .95rem;
+}
+
+.btn{
+    background: #1f2937;
+    border-radius: .75rem;
+    min-width: 7.5rem;
+    font-size: .95rem;
+    letter-spacing: .02em;
+}
+
+.btn:hover{
+    background: #111827;
+}
+
+.btn-light{
+    border-radius: .75rem;
+    min-width: 7.5rem;
+    font-size: .95rem;
+}
+
+.head-homepage{
+    width: 100%;
+    height: auto;
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    align-items: center;
+    justify-content: space-between;
+    padding: .75rem;
+}
+
+.homepage-logo{
+    margin: 0;
+}
+
+.homepage-text h2{
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+}
+
+.homepage-text p{
+    color: var(--text-sub);
+    font-size: .82rem;
+}
+
+.btn-logout{
+    width: auto;
+    min-width: 5.5rem;
+    height: auto;
+    margin: 0;
+    padding: .55rem .9rem;
+    background: var(--primary);
+    border-radius: .75rem;
+    font-size: .9rem;
+}
+
+.homepage-main{
+    padding: 1rem;
+}
+
+.homepage-section-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .75rem;
+}
+
+.homepage-section-head h2{
+    color: var(--primary-dark);
+    font-size: 1.25rem;
+}
+
+.homepage-booking{
+    padding: 0;
+    gap: .85rem;
+}
+
+.homepage-room{
+    width: calc(50% - .45rem);
+    height: auto;
+    border-radius: 1rem;
+    background: var(--surface-soft);
+    border: 1px solid #ddd6fe;
+    box-shadow: 0 8px 20px #5b21b61a;
+}
+
+.homepage-room img{
+    width: 100%;
+    height: 10rem !important;
+    object-fit: cover;
+}
+
+.homepage-room-content{
+    padding: .65rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .5rem;
+    min-height: 8rem;
+}
+
+.homepage-room-title{
+    font-size: .95rem !important;
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.homepage-room-meta{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-sub);
+    font-size: .8rem;
+}
+
+.service-closed{
+    color: #dc2626;
+    font-weight: 700;
+    font-size: .8rem;
+}
+
+.plus{
+    margin-left: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.alert-banner{
+    padding: .55rem .65rem;
+    border-radius: .75rem;
+    border: 1px solid;
+    display:flex;
+    align-items:center;
+    gap: .5rem;
+    margin: .75rem 1rem 0;
+}
+
+.alert-banner.error{
+    background: var(--danger-soft);
+    color: var(--danger-text);
+}
+
+.alert-banner.success{
+    background: var(--success-soft);
+    color: var(--success-text);
+}
+
+.booking-container{
+    background: #fff;
+    border-radius: 1rem;
+    border: 1px solid #ddd6fe;
+    margin: 1rem;
+    height: auto;
+}
+
+.booking-container h1{
+    color: var(--primary-dark);
+    margin-bottom: .25rem;
+}
+
+.booking-form{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.booking-row{
+    display:flex;
+    gap:1rem;
+}
+
+.booking-divider{
+    border-style: dashed;
+    border-color: #ddd6fe;
+}
+
+.booking-actions{
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:end;
+    gap:.75rem;
+    margin-top:.5rem;
+}
+
+.read-only{
+    background-color: #f5f3ff !important;
+    color: #6b7280 !important;
+    cursor: not-allowed !important;
+}
+
+.head-room_detail{
+    align-items: center;
+    padding: .75rem;
+}
+
+.btn-back{
+    width: auto;
+    min-width: 6.5rem;
+    font-size: .95rem;
+    padding: .6rem .8rem;
+    border-radius: 1rem;
+}
+
+.room-detail-page{
+    height: calc(100% - 5.5rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 1rem;
+}
+
+.room_detail-middle{
+    gap: .5rem;
+    padding: 0 .5rem;
+}
+
+.room_detail-people{
+    width: 50%;
+    margin-left: 0;
+    background: var(--surface-soft);
+    border: 1px solid #ddd6fe;
+}
+
+.middle{
+    margin-left: calc(50% - 30px);
+}
+
+.room_detail-detail{
+    width: auto;
+    margin: .65rem .5rem 0;
+    border-radius: .85rem;
+    border: 1px solid #ddd6fe;
+}
+
+.room_detail-detail h4:first-child{
+    padding: .5rem;
+}
+
+.room_detail-under-btn{
+    padding: .5rem;
+}
+
+.room_detail-btn,
+.room_detail-btn-confirm{
+    width: 50%;
+    height: auto;
+    border-radius: .75rem;
+    padding: .75rem;
+}
+
+@media screen and (max-width: 767px) {
+    .homepage-room{
+        width: 100%;
+    }
+
+    .booking-row{
+        flex-direction: column;
+        gap: .65rem;
+    }
+
+    .group-inp{
+        width: 100% !important;
+    }
+}

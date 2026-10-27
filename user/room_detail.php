@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="../script.js"></script>
-    <title>room_detail</title>
+    <title>รายละเอียดห้อง</title>
 </head>
 <body>
     <div class="container">
         <div class="head-room_detail">
-            <a href="" class="btn-back">
+            <a href="../index.php" class="btn-back">
                 <img src="https://cdn-icons-png.flaticon.com/128/507/507257.png" alt="" width="30px">
                 <p>BACK</p>
             </a>
@@ -35,9 +35,9 @@
             ?>
             <h3 style=margin-top:10px><?php echo $row['room_name'] ?></h3>
         </div>
-        <div style="height:49rem; overflow-y: auto; overflow-x: hidden;">
+        <div class="room-detail-page">
             <div class="title-room_detail">
-                <img src=<?php echo'../static/room/'.$row['room_type'].'/'.$row['room_id'].'.webp'; ?> alt="" width="450px" height="250px">
+                <img src=<?php echo'../static/room/'.$row['room_type'].'/'.$row['room_id'].'.webp'; ?> alt="" width="100%" height="250px" style="object-fit:cover;">
                 <h1 style=margin-left:10px;color:#722BC5;><?php echo $row['room_name'] ?></h1>
             </div>
             <div class="room_detail-middle">
@@ -113,8 +113,8 @@
 
 
         <div class="room_detail-under-btn">
-            <a href class="room_detail-btn">สำหรับบุคคลภายนอก</a>
-            <a href class="room_detail-btn-confirm">สำหรับบุคคลภายนอก</a>
+            <a href="../index.php" class="room_detail-btn">กลับหน้าหลัก</a>
+            <a href="<?php echo 'booking.php?id='.$row['room_id']; ?>" class="room_detail-btn-confirm">จองห้องนี้</a>
         </div>
         </div>
         

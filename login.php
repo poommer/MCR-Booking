@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -55,14 +55,14 @@
                 </svg>
             </div>
 
-            <h3 style="font-size: 24px; margin-top:10px;">welcome to MCR Booking</h3>
+            <h3 style="font-size: 24px; margin-top:10px; text-align:center; color:#4c1d95;">Welcome to MCR Booking</h3>
         </div>
 
 
         <div class="form-zone">
-            <h1 style="color:#ECC16B;">เข้าสู่ระบบ</h1>
-            <small>หากลืมรหัสผ่าน แจ้งแอดมิน</small>
-            <form action="server/login_server.php" method="post" style="width:100%; margin-top:2rem; display:flex;  flex-direction:column; justify-content:center; align-items:center; gap:2rem;">
+            <h1 style="color:#f8d482;">เข้าสู่ระบบ</h1>
+            <small style="color:#ede9fe;">หากลืมรหัสผ่าน แจ้งแอดมิน</small>
+            <form action="server/login_server.php" method="post" style="width:100%; margin-top:2rem; display:flex;  flex-direction:column; justify-content:center; align-items:center; gap:1rem;">
                 <div class="group-inp">
                      <label for="email">email</label>
                 <input type="email" name="email" id="email" placeholder="yourname@example.com">
