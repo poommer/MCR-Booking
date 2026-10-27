@@ -1,31 +1,47 @@
 
 function status_show(e,id) { 
-  let check = e.checked === true ? 1 : 0
-  console.log(e.checked);
-  if(e.checked === true){
-      $('#statusArea'+id).addClass('status-room-active');
-      $('#statusArea'+id).removeClass('status-room');
-  }else{
-      $('#statusArea'+id).removeClass('status-room-active');
-      $('#statusArea'+id).addClass('status-room');
-  }
+  const check = e.checked === true ? 1 : 0;
+  const previousChecked = !e.checked;
+  const csrfToken = $('meta[name="csrf-token"]').attr('content') || '';
+
+  const applyStatusClass = (checkedState) => {
+    if (checkedState === true) {
+      $('#statusArea' + id).addClass('status-room-active');
+      $('#statusArea' + id).removeClass('status-room');
+    } else {
+      $('#statusArea' + id).removeClass('status-room-active');
+      $('#statusArea' + id).addClass('status-room');
+    }
+  };
+
+  e.disabled = true;
 
   $.ajax({
     type: "POST",
     url: "../server/admin/room/status_toggle.php",
     data: {
         status: check, // สถานะใหม่ที่จะสลับ
-        id: id // ID ของห้องที่จะสลับสถานะ
+        id: id, // ID ของห้องที่จะสลับสถานะ
+        csrf_token: csrfToken
     },
     dataType: "json",
     success: function (response) {
-      console.log(response);
-      
-        if(response.success) {
-            alert('สถานะห้องถูกสลับสำเร็จ');
-        } else {
-            alert('เกิดข้อผิดพลาดในการสลับสถานะ');
-        }
+      if(response && response.success) {
+        applyStatusClass(e.checked);
+        return;
+      }
+
+      e.checked = previousChecked;
+      applyStatusClass(previousChecked);
+      alert((response && response.message) ? response.message : 'เกิดข้อผิดพลาดในการสลับสถานะ');
+    },
+    error: function () {
+      e.checked = previousChecked;
+      applyStatusClass(previousChecked);
+      alert('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง');
+    },
+    complete: function () {
+      e.disabled = false;
     }
 });
 

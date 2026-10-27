@@ -20,7 +20,15 @@
             <?php
                 require('../server/conn.php');
                 session_start();
-                $id = $_GET['id'];
+                function e($value) {
+                    return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
+                }
+
+                $id = trim($_GET['id'] ?? '');
+                if ($id === '') {
+                    header('Location: ../index.php');
+                    exit;
+                }
 
                 $sql = "SELECT * FROM `room` WHERE  `room_id`= ?";
                 $stmt = $conn->prepare($sql);
@@ -31,40 +39,45 @@
                 $result = $stmt->get_result();
 
                 $row = $result->fetch_assoc();
-                // print_r($row)
+                if (!$row) {
+                    header('Location: ../index.php');
+                    exit;
+                }
+                $roomId = (string)$row['room_id'];
+                $roomType = (string)$row['room_type'];
             ?>
-            <h3 style=margin-top:10px><?php echo $row['room_name'] ?></h3>
+            <h3 style=margin-top:10px><?php echo e($row['room_name']); ?></h3>
         </div>
         <div class="room-detail-page">
             <div class="title-room_detail">
-                <img src=<?php echo'../static/room/'.$row['room_type'].'/'.$row['room_id'].'.webp'; ?> alt="" width="100%" height="250px" style="object-fit:cover;">
-                <h1 style=margin-left:10px;color:#722BC5;><?php echo $row['room_name'] ?></h1>
+                <img src="<?php echo '../static/room/' . rawurlencode($roomType) . '/' . rawurlencode($roomId) . '.webp'; ?>" alt="" width="100%" height="250px" style="object-fit:cover;">
+                <h1 style=margin-left:10px;color:#722BC5;><?php echo e($row['room_name']); ?></h1>
             </div>
             <div class="room_detail-middle">
                 <div class="room_detail-people">
                     <p style="font-size:12px">จำนวนที่นั่ง</p>
                     <img src="../static/user.png" alt="user" width="60px" class="middle">
-                    <h3 style="text-align:center;color:#872BF0"><?php echo $row['room_seats'] ?> ที่นั่ง</h3>
+                    <h3 style="text-align:center;color:#872BF0"><?php echo e($row['room_seats']); ?> ที่นั่ง</h3>
                 </div>
                 <div class="room_detail-people">
                     <p style="font-size:12px">ขนาดพื้นที่</p>
                     <img src="../static/space.png" alt="space" width="60px" class="middle">
-                    <h3 style="text-align:center;color:#872BF0"><?php echo $row['room_areaSize'] ?> ตร.ม.</h3>
+                    <h3 style="text-align:center;color:#872BF0"><?php echo e($row['room_areaSize']); ?> ตร.ม.</h3>
                 </div>
             </div>
             <div class="room_detail-detail">
                 <h4 style="background-color:#722BC5;">รายละเอียด</h4>
                 <div class="detail">
                     <img src="../static/clock.png" alt="time" width="25px">
-                    <h4><?php echo $row['room_OpeningTime'] ?> น.</h4>
+                    <h4><?php echo e($row['room_OpeningTime']); ?> น.</h4>
                 </div>
                 <div class="detail">
                     <img src="../static/map.png" alt="map" width="25px">
-                    <h4 style="margin:0;"><?php echo $row['room_location'] ?></h4>
+                    <h4 style="margin:0;"><?php echo e($row['room_location']); ?></h4>
                 </div>
                 <div class="detail">
                     <img src="../static/flag.png" alt="flag" style="max-width: 25px; max-height : 25px;">
-                    <h4><?php echo $row['room_detail'] ?></h4>
+                    <h4><?php echo e($row['room_detail']); ?></h4>
                 </div>
             </div>
             
@@ -85,7 +98,7 @@
             ?>
                     <div class="elec">
                         <img src="../static/correct.png" alt="corrext" width="25px">
-                        <h4><?php echo  $row_f['fac_name'] ?></h4>
+                        <h4><?php echo e($row_f['fac_name']); ?></h4>
                     </div>
                     <?php } ?>
             </div>
@@ -114,7 +127,7 @@
 
         <div class="room_detail-under-btn">
             <a href="../index.php" class="room_detail-btn">กลับหน้าหลัก</a>
-            <a href="<?php echo 'booking.php?id='.$row['room_id']; ?>" class="room_detail-btn-confirm">จองห้องนี้</a>
+            <a href="<?php echo 'booking.php?id=' . urlencode($roomId); ?>" class="room_detail-btn-confirm">จองห้องนี้</a>
         </div>
         </div>
         
